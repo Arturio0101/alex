@@ -175,3 +175,13 @@ dialog::backdrop {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
 }
+
+.hidden { display: none; }
+
+#message, #resultSection {
+  margin-top: 20px;
+  background: rgba(21,26,46,.85);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 25px rgba(255,91,214,.3);
+}

@@ -17,9 +17,9 @@ pointsDisplay.textContent = STORAGE.points;
 
 // === Список подарков ===
 const gifts = [
-  { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 30, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
-  { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", cost: 25, img: "https://tse4.mm.bing.net/th/id/OIP.G5fbgK4fEI2rtk2B6XE6xQHaE8?pid=Api" },
-  { name: "Frühstück im Bett 🥐", desc: "Kaffee, Croissants und Blumen am Morgen.", cost: 15, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" },
+  { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 25, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
+  { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", cost: 35, img: "https://tse4.mm.bing.net/th/id/OIP.G5fbgK4fEI2rtk2B6XE6xQHaE8?pid=Api" },
+  { name: "Frühstück im Bett 🥐", desc: "Kaffee, Croissants und Blumen am Morgen.", cost: 20, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" },
   { name: "The Lord Of The Rings LED Light Decoration 💡", desc: "Ein wunderschönes LED-Nachtlicht inspiriert von Mittelerde.", cost: 60, img: "images/lort2.jpg" },
   { name: "The Lord of The Rings – The Leaf of The Lorien 🍃", desc: "Das ikonische Elbenblatt – Symbol der Freundschaft der Gefährten.", cost: 15, img: "images/lort3.jpg" },
   { name: "Lord of the Rings Metal Wall Decor (LED) 🌟", desc: "Metall-Wandlampe mit leuchtendem Mittelerde-Design.", cost: 35, img: "images/sw1.jpg" },

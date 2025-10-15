@@ -20,6 +20,7 @@ let cards = [];
 let firstCard = null;
 let moves = 0;
 let found = 0;
+let lockBoard = false; // 🔒 блокировка кликов во время проверки
 
 // === Перемешивание ===
 function shuffle(array) {
@@ -33,6 +34,8 @@ function startGameBoard() {
   cards = [];
   moves = 0;
   found = 0;
+  firstCard = null;
+  lockBoard = false;
   movesEl.textContent = "0";
   pointsEl.textContent = STORAGE.points;
 
@@ -72,30 +75,39 @@ function startGameBoard() {
 
 // === Переворот карт ===
 function flipCard(card, value) {
+  if (lockBoard) return; // ⛔ если идёт проверка — нельзя кликать
   if (card.classList.contains("flip") || card.classList.contains("locked")) return;
+
   card.classList.add("flip");
 
   if (!firstCard) {
     firstCard = card;
-  } else {
-    moves++;
-    movesEl.textContent = moves;
-    const val1 = firstCard.querySelector(".card-front").textContent;
-    const val2 = value;
+    return;
+  }
 
-    if (val1 === val2) {
-      firstCard.classList.add("locked");
-      card.classList.add("locked");
-      found++;
+  // 🔒 блокируем доску до завершения проверки пары
+  lockBoard = true;
+  moves++;
+  movesEl.textContent = moves;
+
+  const val1 = firstCard.querySelector(".card-front").textContent;
+  const val2 = value;
+
+  if (val1 === val2) {
+    firstCard.classList.add("locked");
+    card.classList.add("locked");
+    found++;
+    firstCard = null;
+    lockBoard = false; // ✅ разблокируем доску
+    if (found === EMOJIS.length) win();
+  } else {
+    // ❌ если не совпали — переворачиваем обратно
+    setTimeout(() => {
+      firstCard.classList.remove("flip");
+      card.classList.remove("flip");
       firstCard = null;
-      if (found === EMOJIS.length) win();
-    } else {
-      setTimeout(() => {
-        firstCard.classList.remove("flip");
-        card.classList.remove("flip");
-        firstCard = null;
-      }, 800);
-    }
+      lockBoard = false; // ✅ разблокируем после анимации
+    }, 800);
   }
 }
 
