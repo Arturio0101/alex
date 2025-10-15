@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌉 Bridges of Light – Master Level</title>
+  <link rel="stylesheet" href="bridges.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='../index.html'">← Menü</button>
+      <h1>🌉 Bridges of Light – Master</h1>
+    </header>
+
+    <section id="gameSection">
+      <p class="desc">Verbinde alle Inseln mit Lichtbrücken, ohne dass sich Linien kreuzen!</p>
+      <canvas id="gameCanvas" width="340" height="340"></canvas>
+
+      <div id="hud">
+        ⏱️ Zeit: <span id="timer">0</span>s
+      </div>
+    </section>
+
+    <section id="resultSection" class="hidden">
+      <h2>🎁 Du hast bereits gespielt!</h2>
+      <p>Du hast <strong id="savedPoints">0</strong> Punkte in dieser Runde verdient.</p>
+      <p>Gesamtpunkte: <strong id="totalPoints">0</strong> 💖</p>
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </section>
+
+    <div id="message" class="hidden">
+      🎉 Fantastisch!<br>
+      Du hast <span id="pointsEarned">0</span> Punkte erhalten!
+      <br /><br />
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </div>
+  </div>
+
+  <!-- Start-Popup -->
+  <dialog id="startModal">
+    <h2>🌉 Brücken des Lichts – Master</h2>
+    <p>
+      Ziel: Verbinde alle Inseln miteinander mit Lichtbrücken.<br><br>
+      🔹 Du darfst keine Linien kreuzen.<br>
+      🔹 Je schneller du bist, desto mehr Punkte bekommst du.<br><br>
+      Bereit für die Meisterstufe?
+    </p>
+    <button class="btn" id="startBtn">Los geht’s!</button>
+  </dialog>
+
+  <script src="bridges.js"></script>
+</body>
+</html>
