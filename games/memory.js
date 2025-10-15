@@ -1,11 +1,12 @@
 const grid = document.getElementById("grid");
 const movesEl = document.getElementById("moves");
 const pointsEl = document.getElementById("points");
-const winModal = document.getElementById("winModal");
 const infoModal = document.getElementById("infoModal");
 const infoBtn = document.getElementById("infoBtn");
 const startGame = document.getElementById("startGame");
+const message = document.getElementById("message");
 const claimBtn = document.getElementById("claimBtn");
+const pointsEarned = document.getElementById("pointsEarned");
 
 const STORAGE = {
   get played() { return localStorage.getItem("memory_played") === "true"; },
@@ -111,11 +112,9 @@ function win() {
   STORAGE.played = true;
   pointsEl.textContent = STORAGE.points;
 
-  const modalText = winModal.querySelector("p");
-  modalText.innerHTML = `Du hast alle Paare gefunden!<br>
-    Belohnung: <strong>+${reward} Punkte</strong><br>
-    <small>(${moves} Züge)</small>`;
-  winModal.showModal();
+  // Показываем сообщение
+  pointsEarned.textContent = reward;
+  message.classList.remove("hidden");
 }
 
 // === Слушатели ===
@@ -125,14 +124,12 @@ startGame.addEventListener("click", () => {
   startGameBoard();
 });
 claimBtn.addEventListener("click", () => {
-  winModal.close();
+  message.classList.add("hidden");
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
 
 // === Запуск ===
 document.addEventListener("DOMContentLoaded", () => {
-  if (!STORAGE.played) {
-    infoModal.showModal(); // показываем правила только если не играл
-  }
+  if (!STORAGE.played) infoModal.showModal();
   startGameBoard();
 });

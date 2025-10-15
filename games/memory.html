@@ -23,6 +23,15 @@
     <section class="board">
       <div id="grid" class="grid"></div>
     </section>
+
+    <!-- 💬 Сообщение о победе -->
+    <div id="message" class="hidden">
+      🎉 Großartig!<br>
+      Du hast <span id="pointsEarned">0</span> Punkte erhalten!
+      <br><br>
+      <button class="btn" id="claimBtn">Punkte einsammeln</button>
+      <button class="btn ghost" onclick="location.href='https://arturio0101.github.io/alex/games/geschenk.html'">Zu den Geschenken</button>
+    </div>
   </div>
 
   <!-- Info Modal -->
@@ -33,18 +42,6 @@
       <p>💖 Je weniger Züge, desto mehr Punkte bekommst du!</p>
       <div class="actions">
         <button class="btn" id="startGame">Los geht’s!</button>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Win Modal -->
-  <dialog id="winModal">
-    <div class="modal">
-      <h2>Sieg! 🎉</h2>
-      <p>Du hast alle Paare gefunden!</p>
-      <div class="actions">
-        <button class="btn" id="claimBtn">Punkte einsammeln</button>
-        <button class="btn ghost" onclick="location.href='https://arturio0101.github.io/alex/games/geschenk.html'">Zu den Geschenken</button>
       </div>
     </div>
   </dialog>

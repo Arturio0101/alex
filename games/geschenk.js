@@ -20,11 +20,11 @@ const gifts = [
   { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 30, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
   { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", cost: 25, img: "https://tse4.mm.bing.net/th/id/OIP.G5fbgK4fEI2rtk2B6XE6xQHaE8?pid=Api" },
   { name: "Frühstück im Bett 🥐", desc: "Kaffee, Croissants und Blumen am Morgen.", cost: 15, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" },
-  { name: "The Lord Of The Rings LED Light Decoration 💡", desc: "Ein wunderschönes LED-Nachtlicht inspiriert von Mittelerde.", cost: 20, img: "images/lort2.jpg" },
-  { name: "The Lord of The Rings – The Leaf of The Lorien 🍃", desc: "Das ikonische Elbenblatt – Symbol der Freundschaft der Gefährten.", cost: 30, img: "images/lort3.jpg" },
+  { name: "The Lord Of The Rings LED Light Decoration 💡", desc: "Ein wunderschönes LED-Nachtlicht inspiriert von Mittelerde.", cost: 60, img: "images/lort2.jpg" },
+  { name: "The Lord of The Rings – The Leaf of The Lorien 🍃", desc: "Das ikonische Elbenblatt – Symbol der Freundschaft der Gefährten.", cost: 15, img: "images/lort3.jpg" },
   { name: "Lord of the Rings Metal Wall Decor (LED) 🌟", desc: "Metall-Wandlampe mit leuchtendem Mittelerde-Design.", cost: 35, img: "images/sw1.jpg" },
-  { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", cost: 25, img: "images/hp1.jpg" },
-  { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 30, img: "images/lort4.jpg" }
+  { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", cost: 40, img: "images/hp1.jpg" },
+  { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 25, img: "images/lort4.jpg" }
 ];
 
 // === Показать подарки ===
