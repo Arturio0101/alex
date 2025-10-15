@@ -7,6 +7,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
   background: radial-gradient(circle at 30% 10%, rgba(255,91,214,.15), transparent 40%),
               radial-gradient(circle at 80% 90%, rgba(122,140,255,.15), transparent 40%),
@@ -28,12 +29,11 @@ header {
 .title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 10px;
 }
 
 .info p {
   color: #aab0d9;
-  margin: 5px 0;
+  margin: 6px 0;
 }
 
 /* === Geschenke Grid === */
@@ -50,6 +50,7 @@ header {
   perspective: 1000px;
   cursor: pointer;
   animation: softPulse 3s infinite ease-in-out;
+  position: relative;
 }
 
 .card-inner {
@@ -64,6 +65,14 @@ header {
 
 .card.flip .card-inner {
   transform: rotateY(180deg);
+  animation: flash 0.6s ease-out;
+}
+
+/* === Flash animation === */
+@keyframes flash {
+  0% { box-shadow: 0 0 0px rgba(255,255,255,0); }
+  50% { box-shadow: 0 0 50px rgba(255,255,255,.7); }
+  100% { box-shadow: 0 0 0px rgba(255,255,255,0); }
 }
 
 .card-front, .card-back {
@@ -89,6 +98,19 @@ header {
   filter: brightness(1.1);
 }
 
+.price-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,91,214,.85);
+  color: #111;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(255,91,214,.6);
+}
+
 .card-back {
   background: rgba(21,26,46,.95);
   transform: rotateY(180deg);
@@ -110,21 +132,15 @@ header {
   font-size: 0.9rem;
 }
 
-/* === Neon Glow Effekt === */
 .card:hover .card-inner {
   box-shadow: 0 0 25px rgba(255,91,214,.4),
               0 0 45px rgba(122,140,255,.25);
   transform: scale(1.03);
 }
 
-/* weiches Pulsieren */
 @keyframes softPulse {
-  0%, 100% {
-    box-shadow: 0 0 18px rgba(255,91,214,.2), 0 0 28px rgba(122,140,255,.1);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(255,91,214,.4), 0 0 40px rgba(122,140,255,.25);
-  }
+  0%, 100% { box-shadow: 0 0 18px rgba(255,91,214,.2), 0 0 28px rgba(122,140,255,.1); }
+  50% { box-shadow: 0 0 25px rgba(255,91,214,.4), 0 0 40px rgba(122,140,255,.25); }
 }
 
 /* === Buttons & Dialog === */
@@ -142,10 +158,6 @@ header {
 
 .btn:hover {
   box-shadow: 0 0 15px rgba(255,91,214,.4), 0 0 25px rgba(122,140,255,.3);
-}
-
-.btn:active {
-  transform: scale(0.97);
 }
 
 .btn.ghost {
