@@ -1,6 +1,3 @@
-// 💡 Testmodus: alles löschen beim Start (für Entwicklung)
-localStorage.clear();
-
 const grid = document.getElementById("grid");
 const movesEl = document.getElementById("moves");
 const pointsEl = document.getElementById("points");
