@@ -90,18 +90,23 @@ header {
   height: 100%;
   object-fit: cover;
   border-radius: 18px;
+  background: #fff; /* Белый фон */
   filter: brightness(0.9);
-  transition: filter .3s ease;
+  transition: filter .3s ease, transform .3s ease;
 }
 
 /* Вертикальные картинки */
 .card-front img.portrait {
   object-fit: contain;
-  background: rgba(0, 0, 0, 0.3);
+  background: #fff; /* Белый фон и для вертикальных */
+  padding: 8px;
+  border-radius: 18px;
 }
 
+/* Лёгкое увеличение при наведении */
 .card:hover .card-front img {
-  filter: brightness(1.1);
+  filter: brightness(1.05);
+  transform: scale(1.02);
 }
 
 /* === Title and Price overlay === */
