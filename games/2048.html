@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔢 2048 – Love Edition</title>
+  <link rel="stylesheet" href="game2048.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='../index.html'">← Menü</button>
+      <h1>🔢 2048 – Love Edition</h1>
+    </header>
+
+    <section id="gameSection">
+      <p class="desc">Kombiniere gleiche Zahlen, um 2048 zu erreichen!</p>
+      <div id="grid"></div>
+      <div id="hud">
+        <span>Punkte: <strong id="score">0</strong></span>
+      </div>
+    </section>
+
+    <section id="resultSection" class="hidden">
+      <h2>🎁 Du hast bereits gespielt!</h2>
+      <p>Dein Ergebnis war: <strong id="savedPoints">0</strong> Punkte.</p>
+      <p>Gesamtpunkte: <strong id="totalPoints">0</strong> 💖</p>
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </section>
+
+    <div id="message" class="hidden">
+      🎉 Spiel vorbei!<br>
+      Du hast <span id="pointsEarned">0</span> LP erhalten!
+      <br><br>
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </div>
+  </div>
+
+  <dialog id="startModal">
+    <h2>🔢 2048 – Love Edition</h2>
+    <p>
+      Kombiniere gleiche Zahlen mit den Pfeiltasten (oder durch Wischen auf dem Handy).<br><br>
+      Je größer deine höchste Zahl, desto mehr Love Points bekommst du! 💖
+    </p>
+    <button class="btn" id="startBtn">Los geht’s!</button>
+  </dialog>
+
+  <script src="game2048.js"></script>
+</body>
+</html>
