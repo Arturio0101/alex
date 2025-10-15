@@ -78,6 +78,7 @@ header {
   font-size: 13px;
 }
 
+/* --- Memory Grid --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 80px);
@@ -87,7 +88,6 @@ header {
   margin-top: 10px;
 }
 
-/* === Karte mit Flip === */
 .card {
   width: 80px;
   height: 80px;
@@ -114,18 +114,17 @@ header {
   font-size: 2rem;
 }
 
-/* Rückseite */
 .card-back {
   background: var(--card);
 }
 
-/* Vorderseite */
 .card-front {
   background: radial-gradient(circle at 50% 40%, rgba(255,91,214,.25), rgba(122,140,255,.15));
   transform: rotateY(180deg);
   box-shadow: 0 0 14px rgba(255,91,214,.3);
 }
 
+/* --- Dialog (Popup) --- */
 dialog {
   border: none;
   border-radius: 18px;
@@ -137,13 +136,17 @@ dialog {
   text-align: center;
   box-shadow: 0 0 30px rgba(255,91,214,.3);
   opacity: 0;
-  transform: scale(.9);
+  transform: translate(-50%, -50%) scale(.9);
   transition: opacity .3s ease, transform .3s ease;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 0;
 }
 
 dialog[open] {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 dialog::backdrop {
@@ -157,4 +160,18 @@ dialog::backdrop {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 12px;
+}
+
+/* --- Nachricht beim Wiedereintritt --- */
+#replayMsg {
+  margin-top: 30px;
+  color: #aab0d9;
+  text-align: center;
+  font-size: 1.1rem;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
