@@ -35,10 +35,11 @@ let catcher = { x: 150, y: 350, width: 80, height: 20 };
 let score = 0;
 let misses = 0;
 let gameRunning = false;
+let spawnRate = 0.04; // вероятность появления нового сердца
 
 function resizeCanvas() {
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
+  canvas.width = window.innerWidth * 0.9;
+  canvas.height = window.innerHeight * 0.7;
 }
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
@@ -58,12 +59,7 @@ function drawHeart(x, y, size, color) {
 
 // === Эффект вспышки ===
 function createFlash(x, y) {
-  flashes.push({
-    x,
-    y,
-    alpha: 1,
-    textY: y,
-  });
+  flashes.push({ x, y, alpha: 1, textY: y });
 }
 
 function drawFlashes() {
@@ -85,25 +81,35 @@ function drawFlashes() {
 
 function spawnHeart() {
   const x = Math.random() * (canvas.width - 20) + 10;
-  hearts.push({ x, y: 0, size: 15, speed: 2 + Math.random() * 2 });
+  const angle = (Math.random() - 0.5) * 0.3; // угол траектории
+  hearts.push({
+    x,
+    y: 0,
+    size: 15 + Math.random() * 5,
+    speed: 3 + Math.random() * 3, // быстрее падение
+    angle,
+    drift: Math.random() * Math.PI * 2
+  });
 }
 
 function update() {
   if (!gameRunning) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Отрисовка корзины
+  // Корзина
   ctx.fillStyle = "#ff5bd6";
   ctx.shadowColor = "#ff5bd6";
   ctx.shadowBlur = 20;
   ctx.fillRect(catcher.x, catcher.y, catcher.width, catcher.height);
 
-  // Обновляем и рисуем сердца
+  // Обновляем сердца
   hearts.forEach((h, i) => {
     h.y += h.speed;
+    h.drift += h.angle;
+    h.x += Math.sin(h.drift) * 1.5; // колебания по горизонтали
     drawHeart(h.x, h.y, h.size, "#ff91f2");
 
-    // Проверка попадания
+    // Попадание
     if (
       h.y + h.size > catcher.y &&
       h.x > catcher.x &&
@@ -123,10 +129,14 @@ function update() {
     }
   });
 
-  // Спавним новые сердца
-  if (Math.random() < 0.03) spawnHeart();
+  // Ускорение появления по мере роста очков
+  if (score > 50) spawnRate = 0.05;
+  if (score > 100) spawnRate = 0.06;
 
-  // Рисуем вспышки
+  // Новые сердца
+  if (Math.random() < spawnRate) spawnHeart();
+
+  // Вспышки
   drawFlashes();
 
   requestAnimationFrame(update);
@@ -143,29 +153,33 @@ canvas.addEventListener("touchmove", e => {
 
 function endGame() {
   gameRunning = false;
-  const points = score;
-  STORAGE.total = STORAGE.total + points;
-  STORAGE.score = points;
+
+  // 🎯 Подсчёт очков
+  let reward = 0;
+  if (score >= 100) reward = 30;
+  else if (score >= 50) reward = 20;
+  else if (score >= 25) reward = 15;
+  else reward = 5;
+
+  STORAGE.total = STORAGE.total + reward;
+  STORAGE.score = reward;
   STORAGE.played = true;
 
-  pointsDisplay.textContent = points;
+  pointsDisplay.textContent = reward;
   message.classList.remove("hidden");
 }
 
 startBtn.addEventListener("click", () => {
   startModal.close();
+  score = 0;
+  misses = 0;
+  hearts = [];
   gameRunning = true;
   update();
 });
 
-// === Обработчик для кнопки "Punkte einsammeln" ===
 const claimBtn = document.getElementById("claimBtn");
-
 claimBtn.addEventListener("click", () => {
-  // Закрыть сообщение
   message.classList.add("hidden");
-
-  // Перейти к странице с подарками
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
-
