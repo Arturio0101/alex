@@ -7,13 +7,15 @@ const cancelBtn = document.getElementById("cancelBtn");
 
 const STORAGE = {
   get points() { return +(localStorage.getItem("memory_points") || 0); },
+  set points(v) { localStorage.setItem("memory_points", v); },
   get claimed() { return JSON.parse(localStorage.getItem("claimed_gifts") || "[]"); },
   saveClaimed(arr) { localStorage.setItem("claimed_gifts", JSON.stringify(arr)); }
 };
 
+// === Отобразить текущие очки ===
 pointsDisplay.textContent = STORAGE.points;
 
-// 🎁 Geschenkeliste
+// === Список подарков ===
 const gifts = [
   { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 30, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
   { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", cost: 25, img: "https://tse4.mm.bing.net/th/id/OIP.G5fbgK4fEI2rtk2B6XE6xQHaE8?pid=Api" },
@@ -25,7 +27,7 @@ const gifts = [
   { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 30, img: "images/lort4.jpg" }
 ];
 
-// === Kartenanzeige ===
+// === Показать подарки ===
 gifts.forEach(g => {
   const claimed = STORAGE.claimed.includes(g.name);
   const card = document.createElement("div");
@@ -59,7 +61,7 @@ gifts.forEach(g => {
   };
 });
 
-// === Pop-up Handler ===
+// === Обработчик выбора подарка ===
 function openGift(gift, card) {
   card.classList.toggle("flip");
 
@@ -71,15 +73,25 @@ function openGift(gift, card) {
       giftText.innerHTML = `Möchtest du <strong>${gift.name}</strong> auswählen?<br>(Kosten: ${gift.cost} LP)`;
       sendBtn.style.display = "inline-block";
       sendBtn.onclick = () => {
+        // 💖 Списываем очки
+        STORAGE.points = STORAGE.points - gift.cost;
+        localStorage.setItem("memory_points", STORAGE.points);
+        pointsDisplay.textContent = STORAGE.points;
+
+        // Отправляем сертификат
         sendWhatsApp(gift);
+
+        // Отмечаем подарок как использованный
         markGiftClaimed(gift, card);
+
+        confirmModal.close();
       };
     }
     confirmModal.showModal();
   }, 600);
 }
 
-// === WhatsApp Zertifikat ===
+// === WhatsApp сертификат ===
 function sendWhatsApp(gift) {
   const certUrl = `https://arturio0101.github.io/alex/certificate.html?gift=${encodeURIComponent(gift.name)}`;
   const text = encodeURIComponent(`💖 Ich habe ein Geschenk ausgewählt: ${gift.name}\n\n🎟️ Mein Zertifikat:\n${certUrl}`);
@@ -87,14 +99,17 @@ function sendWhatsApp(gift) {
   window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
 }
 
-// === Markierung als eingelöst ===
+// === Отметить подарок как полученный ===
 function markGiftClaimed(gift, card) {
   const claimed = STORAGE.claimed;
   if (!claimed.includes(gift.name)) {
     claimed.push(gift.name);
     STORAGE.saveClaimed(claimed);
     card.classList.add("claimed");
-    card.querySelector(".card-front").insertAdjacentHTML("beforeend", `<div class="claimed-badge">🎁 Schon eingelöst</div>`);
+    card.querySelector(".card-front").insertAdjacentHTML(
+      "beforeend",
+      `<div class="claimed-badge">🎁 Schon eingelöst</div>`
+    );
   }
 }
 

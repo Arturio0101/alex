@@ -19,7 +19,7 @@ const STORAGE = {
   set score(v) { localStorage.setItem("fallinghearts_score", v); }
 };
 
-// Проверка: уже играли?
+// === Проверка: уже играли? ===
 if (STORAGE.played) {
   gameSection.classList.add("hidden");
   resultSection.classList.remove("hidden");
@@ -30,6 +30,7 @@ if (STORAGE.played) {
 }
 
 let hearts = [];
+let flashes = [];
 let catcher = { x: 150, y: 350, width: 80, height: 20 };
 let score = 0;
 let misses = 0;
@@ -53,6 +54,33 @@ function drawHeart(x, y, size, color) {
   ctx.shadowBlur = 20;
   ctx.fill();
   ctx.restore();
+}
+
+// === Эффект вспышки ===
+function createFlash(x, y) {
+  flashes.push({
+    x,
+    y,
+    alpha: 1,
+    textY: y,
+  });
+}
+
+function drawFlashes() {
+  flashes.forEach((f, i) => {
+    f.alpha -= 0.03;
+    f.textY -= 1;
+    ctx.save();
+    ctx.globalAlpha = f.alpha;
+    ctx.fillStyle = "#ff91f2";
+    ctx.font = "bold 18px Inter";
+    ctx.textAlign = "center";
+    ctx.shadowColor = "#ff91f2";
+    ctx.shadowBlur = 12;
+    ctx.fillText("+1 💖", f.x, f.textY);
+    ctx.restore();
+    if (f.alpha <= 0) flashes.splice(i, 1);
+  });
 }
 
 function spawnHeart() {
@@ -81,6 +109,7 @@ function update() {
       h.x > catcher.x &&
       h.x < catcher.x + catcher.width
     ) {
+      createFlash(h.x, h.y);
       hearts.splice(i, 1);
       score++;
       scoreDisplay.textContent = `❤️ ${score}`;
@@ -97,9 +126,13 @@ function update() {
   // Спавним новые сердца
   if (Math.random() < 0.03) spawnHeart();
 
+  // Рисуем вспышки
+  drawFlashes();
+
   requestAnimationFrame(update);
 }
 
+// === Управление пальцем ===
 canvas.addEventListener("touchmove", e => {
   e.preventDefault();
   const touch = e.touches[0];
