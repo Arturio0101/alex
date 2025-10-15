@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💎 Falling Hearts</title>
+  <link rel="stylesheet" href="fallinghearts.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='../index.html'">← Menü</button>
+      <h1>💎 Falling Hearts</h1>
+    </header>
+
+    <section id="gameSection">
+      <canvas id="gameCanvas"></canvas>
+      <p id="scoreDisplay">❤️ 0</p>
+    </section>
+
+    <section id="resultSection" class="hidden">
+      <h2>🎁 Du hast bereits gespielt!</h2>
+      <p>Dein Ergebnis war: <strong id="savedPoints">0</strong> Punkte.</p>
+      <p>Gesamtpunkte: <strong id="totalPoints">0</strong> 💖</p>
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </section>
+
+    <div id="message" class="hidden">
+      🎉 Spiel vorbei!<br>
+      Du hast <span id="pointsEarned">0</span> LP erhalten!
+      <br><br>
+      <button class="btn ghost" onclick="location.href='../geschenk.html'">🎁 Geschenke ansehen</button>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <dialog id="startModal">
+    <h2>💎 Falling Hearts</h2>
+    <p>
+      Bewege deinen Finger, um die fallenden Herzen zu fangen! 💖<br><br>
+      Du darfst 3 Herzen verlieren – dann ist das Spiel vorbei.
+    </p>
+    <button class="btn" id="startBtn">Los geht’s!</button>
+  </dialog>
+
+  <script src="fallinghearts.js"></script>
+</body>
+</html>
