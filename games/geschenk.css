@@ -185,3 +185,15 @@ dialog {
   flex-wrap: wrap;
   margin-top: 12px;
 }
+
+.price-tag.back {
+  top: auto;
+  bottom: 12px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #111;
+  box-shadow: 0 0 10px rgba(255,91,214,.5);
+}
+
