@@ -11,7 +11,7 @@ const STORAGE = {
 
 pointsDisplay.textContent = STORAGE.points;
 
-// === список подарков ===
+// === Список подарков (с ссылками на изображения) ===
 const gifts = [
   { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 30, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
   { name: "Wellnessabend 🕯️", desc: "Entspannung mit Kerzen, Musik und Massage.", cost: 20, img: "https://images.unsplash.com/photo-1556228578-0930502599a4?auto=format&fit=crop&w=600&q=80" },
@@ -21,19 +21,19 @@ const gifts = [
   { name: "Überraschung 💖", desc: "Lass dich überraschen – es könnte alles sein!", cost: 35, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" },
 ];
 
-// === отображаем карточки ===
+// === Отрисовка карточек ===
 gifts.forEach(g => {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
     <div class="card-inner">
       <div class="card-front">
+        <span class="price-tag">${g.cost} LP</span>
         <img src="${g.img}" alt="${g.name}">
       </div>
       <div class="card-back">
         <h3>${g.name}</h3>
         <p>${g.desc}</p>
-        <p>${g.cost} LP</p>
       </div>
     </div>
   `;
@@ -54,12 +54,12 @@ function openGift(gift, card) {
       sendBtn.onclick = () => sendWhatsApp(gift);
     }
     confirmModal.showModal();
-  }, 700);
+  }, 600);
 }
 
 function sendWhatsApp(gift) {
-  const text = encodeURIComponent(`💖 Ich möchte mein Geschenk einlösen: ${gift.name} (${gift.cost} LP)`);
-  const phone = "4915112345678"; // <- замени на свой номер без +
+  const text = encodeURIComponent(`💖 Ich möchte mein Geschenk einlösen: ${gift.name} (${gift.cost} LP)\n🎟️ Zertifikat: ${gift.img}`);
+  const phone = "4915172386493";
   window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
 }
 
