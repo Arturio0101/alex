@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Rewards — Сертификат</title>
+  <link rel="stylesheet" href="certificate.css" />
+</head>
+<body>
+  <div id="bg-overlay"></div>
+
+  <main class="sheet">
+    <header class="head">
+      <div class="badge">Love Rewards</div>
+      <h1 class="title">СЕРТИФИКАТ ПОДАРКА</h1>
+      <p class="subtitle">Этот сертификат подтверждает, что</p>
+      <h2 id="recipient" class="recipient">—</h2>
+    </header>
+
+    <section class="body">
+      <p class="line">
+        получила право на подарок:
+      </p>
+      <h3 id="reward" class="reward">—</h3>
+
+      <div class="meta">
+        <div class="meta-item">
+          <div class="label">Очки</div>
+          <div id="points" class="value">—</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Код</div>
+          <div id="code" class="value code">—</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Дата</div>
+          <div id="date" class="value">—</div>
+        </div>
+      </div>
+
+      <p id="note" class="note">
+        Подарок можно обменять у его создателя 💖 (действителен один раз).
+      </p>
+    </section>
+
+    <footer class="foot">
+      <div class="sign">
+        <div class="sign-line"></div>
+        <div class="sign-label">Подпись дарителя</div>
+      </div>
+      <button class="print-btn" onclick="window.print()">Скачать PDF / Напечатать</button>
+    </footer>
+  </main>
+
+  <script src="certificate.js"></script>
+</body>
+</html>

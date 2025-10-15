@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Love Rewards — Lights Out</title>
+  <link rel="stylesheet" href="lightsout.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='/index.html'">← Menü</button>
+      <div class="title">Lights Out</div>
+      <button class="btn ghost" onclick="location.href='/shop.html'">Geschenke</button>
+    </header>
+
+    <div class="hud">
+      <div class="chip">Züge: <strong id="moves">0</strong></div>
+      <div class="chip">Bester Versuch: <strong id="best">—</strong></div>
+      <div class="chip">Punkte: <strong id="pts">0</strong> LP</div>
+      <button class="btn ghost info" id="infoBtn">ℹ️</button>
+    </div>
+
+    <section class="board-wrap">
+      <div id="grid" class="grid" role="grid" aria-label="Lights Out Spielfeld"></div>
+      <div class="controls">
+        <button class="btn" id="newGame">Neues Spiel</button>
+        <button class="btn ghost" id="hintBtn">Tipp</button>
+      </div>
+      <p class="legend">Tippe auf ein Feld, um es und seine Nachbarn zu wechseln. Ziel: alle Felder hell machen.</p>
+    </section>
+  </div>
+
+  <dialog id="win">
+    <div class="modal">
+      <h2>Sieg! ✨</h2>
+      <p>Du hast das Rätsel gelöst! Belohnung: <strong id="winPts">+18</strong> Punkte.</p>
+      <div class="actions">
+        <button class="btn" id="claim">Punkte einsammeln</button>
+        <button class="btn ghost" onclick="location.href='/shop.html'">Zu den Geschenken</button>
+        <button class="btn ghost" id="playAgain">Nochmal spielen</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="infoModal">
+    <div class="modal">
+      <h2>Wie spielt man „Lights Out“?</h2>
+      <p>💡 Tippe auf ein Feld, um es und seine Nachbarn ein- oder auszuschalten.</p>
+      <p>Ziel: <strong>Alle Felder müssen hell sein.</strong></p>
+      <p>🕹️ Jeder Klick zählt! 💖 Wenn du das Rätsel löst, bekommst du <strong>+18 Punkte</strong>.</p>
+      <div class="actions">
+        <button class="btn" id="startGame">Los geht’s!</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="lightsout.js"></script>
+</body>
+</html>
