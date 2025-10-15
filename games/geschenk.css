@@ -39,7 +39,7 @@ header {
 /* === Geschenke Grid === */
 .gifts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 18px;
   margin-top: 20px;
   justify-content: center;
@@ -56,7 +56,7 @@ header {
 .card-inner {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 260px;
   transform-style: preserve-3d;
   transition: transform .8s;
   border-radius: 18px;
@@ -98,16 +98,36 @@ header {
   filter: brightness(1.1);
 }
 
-.price-tag {
+/* === Title and Price overlay === */
+.card-info {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: var(--ink);
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0,0,0,.8);
+}
+
+.card-info .gift-name {
+  font-size: 1rem;
+  text-align: left;
+  flex: 1;
+}
+
+.card-info .price-tag {
   background: rgba(255,91,214,.85);
   color: #111;
   font-weight: 700;
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: 12px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  margin-left: 10px;
   box-shadow: 0 0 10px rgba(255,91,214,.6);
 }
 
@@ -130,8 +150,21 @@ header {
 .card-back p {
   color: #aab0d9;
   font-size: 0.9rem;
+  padding: 0 10px;
 }
 
+.price-tag.back {
+  top: auto;
+  bottom: 12px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #111;
+  box-shadow: 0 0 10px rgba(255,91,214,.5);
+}
+
+/* === Hover Effects === */
 .card:hover .card-inner {
   box-shadow: 0 0 25px rgba(255,91,214,.4),
               0 0 45px rgba(122,140,255,.25);
@@ -186,14 +219,52 @@ dialog {
   margin-top: 12px;
 }
 
-.price-tag.back {
-  top: auto;
-  bottom: 12px;
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  color: #111;
-  box-shadow: 0 0 10px rgba(255,91,214,.5);
+.card.claimed {
+  opacity: 0.7;
+  filter: grayscale(50%);
+  box-shadow: 0 0 20px rgba(255,91,214,.3);
+  pointer-events: none;
 }
 
+.claimed-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255,91,214,.85);
+  color: #111;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 0 12px rgba(255,91,214,.6);
+}
+
+/* === Dialog fix: zentriert & responsive === */
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1000;
+  border: none;
+  border-radius: 18px;
+  background: rgba(21,26,46,.9);
+  backdrop-filter: blur(6px);
+  padding: 24px 20px;
+  width: min(90vw, 420px);
+  color: var(--ink);
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,91,214,.4);
+  animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -55%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
