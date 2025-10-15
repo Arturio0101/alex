@@ -1,3 +1,6 @@
+// 💡 Testmodus: alles löschen beim Start (für Entwicklung)
+localStorage.clear();
+
 const grid = document.getElementById("grid");
 const movesEl = document.getElementById("moves");
 const pointsEl = document.getElementById("points");
@@ -34,12 +37,21 @@ function start() {
   movesEl.textContent = "0";
   pointsEl.textContent = STORAGE.points;
 
-  // Если уже играли — показать сообщение
+  // Если уже играли — показать сообщение по центру
   if (STORAGE.played) {
     const msg = document.createElement("div");
     msg.id = "replayMsg";
-    msg.textContent = "🎁 Du hast alle Punkte erhalten! Danke fürs Spielen 💖";
-    grid.appendChild(msg);
+    msg.innerHTML = `
+      🎁 Du hast alle Punkte erhalten!<br>
+      Du hast <strong>${STORAGE.points} Punkte</strong> in diesem Spiel gesammelt.<br>
+      <span class="small">✨ Versuch ein anderes Spiel!</span>
+    `;
+    document.body.appendChild(msg);
+
+    // 👉 при клике возвращаем на главную страницу
+    msg.addEventListener("click", () => {
+      window.location.href = "/index.html";
+    });
     return;
   }
 
