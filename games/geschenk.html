@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Rewards – Geschenke</title>
+  <link rel="stylesheet" href="geschenk.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='/index.html'">← Menü</button>
+      <div class="title">🎁 Geschenke</div>
+    </header>
+
+    <section class="info">
+      <p>Du hast <strong id="pointsDisplay">0 Punkte</strong> gesammelt 💖</p>
+      <p>Wähle dein Geschenk aus:</p>
+    </section>
+
+    <section id="giftList" class="gifts"></section>
+
+    <dialog id="confirmModal">
+      <div class="modal">
+        <h2>Geschenk auswählen 🎁</h2>
+        <p id="giftText"></p>
+        <div class="actions">
+          <button class="btn" id="sendBtn">Über WhatsApp senden 💬</button>
+          <button class="btn ghost" id="cancelBtn">Abbrechen</button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <script src="geschenk.js"></script>
+</body>
+</html>

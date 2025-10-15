@@ -102,10 +102,10 @@ function flipCard(card, value) {
 function win() {
   let reward = 0;
 
-  if (moves <= 10) reward = 30;
-  else if (moves <= 16) reward = 20;
-  else if (moves <= 25) reward = 15;
-  else if (moves <= 35) reward = 10;
+  if (moves <= 8) reward = 30;
+  else if (moves <= 14) reward = 20;
+  else if (moves <= 20) reward = 15;
+  else if (moves <= 24) reward = 10;
   else reward = 5;
 
   STORAGE.points += reward;
