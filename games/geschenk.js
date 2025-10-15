@@ -55,17 +55,18 @@ gifts.forEach(g => {
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <div class="card-inner">
-      <div class="card-front">
-        <span class="price-tag">${g.cost} LP</span>
-        <img src="${g.img}" alt="${g.name}">
-      </div>
-      <div class="card-back">
-        <h3>${g.name}</h3>
-        <p>${g.desc}</p>
-      </div>
+  <div class="card-inner">
+    <div class="card-front">
+      <span class="price-tag">${g.cost} LP</span>
+      <img src="${g.img}" alt="${g.name}">
     </div>
-  `;
+    <div class="card-back">
+      <h3>${g.name}</h3>
+      <p>${g.desc}</p>
+      <span class="price-tag back">${g.cost} LP</span>
+    </div>
+  </div>
+`;
   card.addEventListener("click", () => openGift(g, card));
   giftList.appendChild(card);
 });
@@ -93,4 +94,5 @@ function sendWhatsApp(gift) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
+
 
