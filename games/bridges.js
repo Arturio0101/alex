@@ -194,3 +194,14 @@ function startGame() {
 
 startBtn.addEventListener("click", startGame);
 draw();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const claimBtn = document.getElementById("claimBtn");
+  if (claimBtn) {
+    claimBtn.addEventListener("click", () => {
+      message.classList.add("hidden");
+      window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
+    });
+  }
+});
+

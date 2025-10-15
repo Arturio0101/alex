@@ -157,3 +157,15 @@ startBtn.addEventListener("click", () => {
   gameRunning = true;
   update();
 });
+
+// === Обработчик для кнопки "Punkte einsammeln" ===
+const claimBtn = document.getElementById("claimBtn");
+
+claimBtn.addEventListener("click", () => {
+  // Закрыть сообщение
+  message.classList.add("hidden");
+
+  // Перейти к странице с подарками
+  window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
+});
+
