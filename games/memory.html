@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Rewards – Memory</title>
+  <link rel="stylesheet" href="memory.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="btn ghost" onclick="location.href='/index.html'">← Menü</button>
+      <div class="title">Memory Spiel</div>
+      <button class="btn ghost" onclick="location.href='/shop.html'">Geschenke</button>
+    </header>
+
+    <div class="hud">
+      <div class="chip">Züge: <strong id="moves">0</strong></div>
+      <div class="chip">Punkte: <strong id="points">0</strong> LP</div>
+      <button class="btn ghost info" id="infoBtn">ℹ️</button>
+    </div>
+
+    <section class="board">
+      <div id="grid" class="grid"></div>
+    </section>
+  </div>
+
+  <dialog id="infoModal">
+    <div class="modal">
+      <h2>Wie spielt man „Memory“?</h2>
+      <p>💡 Finde alle passenden Paare! Jede Karte zeigt ein Emoji. Tippe zwei Karten – wenn sie gleich sind, bleiben sie offen.</p>
+      <p>💖 Wenn du alle Paare findest, bekommst du <strong>+15 Punkte</strong>.</p>
+      <div class="actions">
+        <button class="btn" id="startGame">Los geht’s!</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="winModal">
+    <div class="modal">
+      <h2>Sieg! 🎉</h2>
+      <p>Du hast alle Paare gefunden! Belohnung: <strong>+15 Punkte</strong></p>
+      <div class="actions">
+        <button class="btn" id="claimBtn">Punkte einsammeln</button>
+        <button class="btn ghost" onclick="location.href='/shop.html'">Zu den Geschenken</button>
+        <button class="btn ghost" id="playAgain">Nochmal spielen</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="memory.js"></script>
+</body>
+</html>
