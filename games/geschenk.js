@@ -13,12 +13,41 @@ pointsDisplay.textContent = STORAGE.points;
 
 // === Список подарков (с ссылками на изображения) ===
 const gifts = [
-  { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", cost: 30, img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
-  { name: "Wellnessabend 🕯️", desc: "Entspannung mit Kerzen, Musik und Massage.", cost: 20, img: "https://images.unsplash.com/photo-1556228578-0930502599a4?auto=format&fit=crop&w=600&q=80" },
-  { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", cost: 25, img: "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=600&q=80" },
-  { name: "Frühstück im Bett 🥐", desc: "Kaffee, Croissants und Blumen am Morgen.", cost: 15, img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" },
-  { name: "Kreativer Tag 🎨", desc: "Zusammen malen, basteln oder was Neues lernen.", cost: 10, img: "https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=600&q=80" },
-  { name: "Überraschung 💖", desc: "Lass dich überraschen – es könnte alles sein!", cost: 35, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" },
+  { 
+    name: "Steam-Geschenkkarte 🎮", 
+    desc: "Gutschein für dein Lieblingsspiel auf Steam.", 
+    cost: 30, 
+    img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" 
+  },
+  { 
+  name: "Wellnessabend 🕯️",
+  desc: "Entspannung mit Kerzen, Musik und Massage.",
+  cost: 20,
+  img: "images/wellness.jpg"
+},
+  { 
+   name: "Romantisches Abendessen 🍷", 
+   desc: "Selbstgekochtes Menü mit Kerzenlicht.", 
+   cost: 25, 
+   img: "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=600&q=80" 
+  },
+  { 
+    name: "Frühstück im Bett 🥐", 
+    desc: "Kaffee, Croissants und Blumen am Morgen.", 
+    cost: 15, 
+    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" 
+  },
+  { 
+    name: "Kreativer Tag 🎨", 
+    desc: "Zusammen malen, basteln oder was Neues lernen.", 
+    cost: 10, 
+    img: "https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=600&q=80" 
+  },
+  { 
+    name: "Überraschung 💖", 
+    desc: "Lass dich überraschen – es könnte alles sein!", 
+    cost: 35, 
+    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" },
 ];
 
 // === Отрисовка карточек ===
@@ -64,3 +93,4 @@ function sendWhatsApp(gift) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
+
