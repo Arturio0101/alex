@@ -111,17 +111,24 @@ canvas.addEventListener("click", e => {
   checkWin();
 });
 
+// === Исправленная логика соединений ===
 function canConnect(a, b) {
-  const dx = Math.abs(a.x - b.x);
-  const dy = Math.abs(a.y - b.y);
-  if (dx > spacing + 10 || dy > spacing + 10) return false;
-  return !intersectsExisting(a, b);
+  if (a === b) return false;
+
+  // Если уже соединены — разрешаем удалить
+  if (a.links.includes(b.id)) return true;
+
+  // Можно соединять любые острова, если нет пересечения с другими линиями
+  if (intersectsExisting(a, b)) return false;
+
+  return true;
 }
 
 function intersectsExisting(a, b) {
   for (const i of islands) {
     for (const lid of i.links) {
       const j = islands.find(n => n.id === lid);
+      // проверяем только одну сторону (уникальные пары)
       if (i.id < j.id && segmentsIntersect(a, b, i, j)) return true;
     }
   }
@@ -129,10 +136,18 @@ function intersectsExisting(a, b) {
 }
 
 function segmentsIntersect(p1, p2, p3, p4) {
+  // Если линии имеют общие вершины — не считаем пересечением
+  if (
+    p1.id === p3.id || p1.id === p4.id ||
+    p2.id === p3.id || p2.id === p4.id
+  ) return false;
+
   function ccw(A, B, C) {
     return (C.y - A.y) * (B.x - A.x) > (B.y - A.y) * (C.x - A.x);
   }
-  return ccw(p1, p3, p4) !== ccw(p2, p3, p4) && ccw(p1, p2, p3) !== ccw(p1, p2, p4);
+
+  return ccw(p1, p3, p4) !== ccw(p2, p3, p4) &&
+         ccw(p1, p2, p3) !== ccw(p1, p2, p4);
 }
 
 function toggleLink(a, b) {
@@ -204,4 +219,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
