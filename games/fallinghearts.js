@@ -7,8 +7,6 @@ const savedPoints = document.getElementById("savedPoints");
 const totalPoints = document.getElementById("totalPoints");
 const resultSection = document.getElementById("resultSection");
 const gameSection = document.getElementById("gameSection");
-const startModal = document.getElementById("startModal");
-const startBtn = document.getElementById("startBtn");
 const infoModal = document.getElementById("infoModal");
 const infoStartBtn = document.getElementById("infoStartBtn");
 
@@ -28,14 +26,9 @@ if (STORAGE.played) {
   savedPoints.textContent = STORAGE.score;
   totalPoints.textContent = STORAGE.total;
 } else {
-  // Если играет впервые — сначала показать инфо-попап
+  // Первый раз — показываем правила
   infoModal.showModal();
 }
-
-infoStartBtn.addEventListener("click", () => {
-  infoModal.close();
-  startModal.showModal();
-});
 
 let hearts = [];
 let flashes = [];
@@ -159,10 +152,19 @@ canvas.addEventListener("touchmove", e => {
   catcher.x = Math.max(0, Math.min(canvas.width - catcher.width, x - catcher.width / 2));
 });
 
+function startGame() {
+  score = 0;
+  misses = 0;
+  hearts = [];
+  gameRunning = true;
+  infoModal.close();
+  update();
+}
+
 function endGame() {
   gameRunning = false;
 
-  // 🎯 Подсчёт очков (исправлено)
+  // 🎯 Подсчёт очков
   let reward = 0;
   if (score >= 150) reward = 30;
   else if (score >= 100) reward = 25;
@@ -178,14 +180,7 @@ function endGame() {
   message.classList.remove("hidden");
 }
 
-startBtn.addEventListener("click", () => {
-  startModal.close();
-  score = 0;
-  misses = 0;
-  hearts = [];
-  gameRunning = true;
-  update();
-});
+infoStartBtn.addEventListener("click", startGame);
 
 const claimBtn = document.getElementById("claimBtn");
 claimBtn.addEventListener("click", () => {
