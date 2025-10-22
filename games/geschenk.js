@@ -24,7 +24,8 @@ const gifts = [
   { name: "The Lord of The Rings – The Leaf of The Lorien 🍃", desc: "Das ikonische Elbenblatt – Symbol der Freundschaft der Gefährten.", cost: 15, img: "images/lort3.jpg" },
   { name: "Lord of the Rings Metal Wall Decor (LED) 🌟", desc: "Metall-Wandlampe mit leuchtendem Mittelerde-Design.", cost: 35, img: "images/sw1.jpg" },
   { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", cost: 40, img: "images/hp1.jpg" },
-  { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 25, img: "images/lort4.jpg" }
+  { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 25, img: "images/lort4.jpg" },
+  { name: "Goose Stuffed Animal Toy Cute Giant White Goose", desc: "example.", cost: 30, img: "images/123.jpg" }
 ];
 
 // === Показать подарки ===
@@ -114,3 +115,4 @@ function markGiftClaimed(gift, card) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
+
