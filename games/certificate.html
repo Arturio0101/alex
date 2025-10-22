@@ -3,16 +3,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geschenk Zertifikat</title>
+  <title>🎟️ Geschenk-Zertifikat</title>
   <link rel="stylesheet" href="certificate.css" />
 </head>
 <body>
-  <div id="certificate" class="certificate">
-    <h1>🎁 Geschenkzertifikat</h1>
+  <div id="certificate">
+    <h1>🎟️ Love Rewards Zertifikat</h1>
+    <img id="giftImage" src="" alt="Gift">
     <h2 id="giftName"></h2>
     <p id="giftDesc"></p>
-    <p class="footer">Mit Liebe erstellt 💖</p>
+    <p class="footer">💖 Mit Liebe verdient durch Spiele auf Love Rewards</p>
   </div>
-  <script src="certificate.js"></script>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const giftName = params.get("gift");
+
+    // Все подарки для поиска
+    const gifts = [
+      { name: "Steam-Geschenkkarte 🎮", desc: "Gutschein für dein Lieblingsspiel auf Steam.", img: "https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" },
+      { name: "Romantisches Abendessen 🍷", desc: "Selbstgekochtes Menü mit Kerzenlicht.", img: "https://tse4.mm.bing.net/th/id/OIP.G5fbgK4fEI2rtk2B6XE6xQHaE8?pid=Api" },
+      { name: "Frühstück im Bett 🥐", desc: "Kaffee, Croissants und Blumen am Morgen.", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" },
+      { name: "The Lord Of The Rings LED Light Decoration 💡", desc: "Ein wunderschönes LED-Nachtlicht inspiriert von Mittelerde.", img: "images/lort2.jpg" },
+      { name: "The Lord of The Rings – The Leaf of The Lorien 🍃", desc: "Das ikonische Elbenblatt – Symbol der Freundschaft der Gefährten.", img: "images/lort3.jpg" },
+      { name: "Lord of the Rings Metal Wall Decor (LED) 🌟", desc: "Metall-Wandlampe mit leuchtendem Mittelerde-Design.", img: "images/sw1.jpg" },
+      { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", img: "images/hp1.jpg" },
+      { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", img: "images/lort4.jpg" },
+      { name: "Riesige Kuschel-Gans 🦢", desc: "Ein supersüßes, weiches Stofftier in Gänseform – perfekt zum Kuscheln.", img: "images/123.jpg" },
+      { name: "Gewichtete Capybara-Plüschfigur 🦫", desc: "Ein niedliches, beruhigendes Stofftier mit Gewicht – ideal zum Entspannen.", img: "images/124.jpg" }
+    ];
+
+    const gift = gifts.find(g => g.name === giftName);
+
+    if (gift) {
+      document.getElementById("giftName").textContent = gift.name;
+      document.getElementById("giftDesc").textContent = gift.desc;
+      document.getElementById("giftImage").src = gift.img;
+    } else {
+      document.getElementById("certificate").innerHTML = "<h2>❌ Geschenk nicht gefunden.</h2>";
+    }
+  </script>
 </body>
 </html>
