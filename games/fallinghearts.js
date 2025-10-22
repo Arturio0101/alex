@@ -9,6 +9,8 @@ const resultSection = document.getElementById("resultSection");
 const gameSection = document.getElementById("gameSection");
 const startModal = document.getElementById("startModal");
 const startBtn = document.getElementById("startBtn");
+const infoModal = document.getElementById("infoModal");
+const infoStartBtn = document.getElementById("infoStartBtn");
 
 const STORAGE = {
   get total() { return +(localStorage.getItem("memory_points") || 0); },
@@ -19,15 +21,21 @@ const STORAGE = {
   set score(v) { localStorage.setItem("fallinghearts_score", v); }
 };
 
-// === Проверка: уже играли? ===
+// === Проверка: уже играл? ===
 if (STORAGE.played) {
   gameSection.classList.add("hidden");
   resultSection.classList.remove("hidden");
   savedPoints.textContent = STORAGE.score;
   totalPoints.textContent = STORAGE.total;
 } else {
-  startModal.showModal();
+  // Если играет впервые — сначала показать инфо-попап
+  infoModal.showModal();
 }
+
+infoStartBtn.addEventListener("click", () => {
+  infoModal.close();
+  startModal.showModal();
+});
 
 let hearts = [];
 let flashes = [];
@@ -184,5 +192,6 @@ claimBtn.addEventListener("click", () => {
   message.classList.add("hidden");
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
+
 
 
