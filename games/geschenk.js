@@ -25,8 +25,8 @@ const gifts = [
   { name: "Lord of the Rings Metal Wall Decor (LED) 🌟", desc: "Metall-Wandlampe mit leuchtendem Mittelerde-Design.", cost: 35, img: "images/sw1.jpg" },
   { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", cost: 40, img: "images/hp1.jpg" },
   { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 25, img: "images/lort4.jpg" },
-  { name: "Goose Stuffed Animal Toy Cute Giant White Goose", desc: "example.", cost: 30, img: "images/123.jpg" },
-  { name: "Gewichtete Stofftiere Capybara Plüsch", desc: "example.", cost: 35, img: "images/124.jpg" }
+  { name: "Riesige Kuschel-Gans 🦢", desc: "Ein supersüßes, weiches Stofftier in Gänseform – perfekt zum Kuscheln.", cost: 30, img: "images/123.jpg" },
+  { name: "Gewichtete Capybara-Plüschfigur 🦫", desc: "Ein niedliches, beruhigendes Stofftier mit Gewicht – ideal zum Entspannen.", cost: 35, img: "images/124.jpg" }
 ];
 
 // === Показать подарки ===
@@ -116,5 +116,6 @@ function markGiftClaimed(gift, card) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
+
 
 
