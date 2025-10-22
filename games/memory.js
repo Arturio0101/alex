@@ -39,20 +39,17 @@ function startGameBoard() {
   movesEl.textContent = "0";
   pointsEl.textContent = STORAGE.points;
 
-  // Если уже играл — показываем сообщение
+    // Если уже играл — показываем Popup
   if (STORAGE.played) {
-    const msg = document.createElement("div");
-    msg.id = "replayMsg";
-    msg.innerHTML = `
-      🎁 Du hast bereits gespielt!<br>
-      Du hast <strong>${STORAGE.points}</strong> Punkte gesammelt.<br>
-      <span class="small">✨ Versuch ein anderes Spiel!</span>
-    `;
-    document.body.appendChild(msg);
+    const replayModal = document.getElementById("replayModal");
+    const savedPoints = document.getElementById("savedPoints");
+    const totalPoints = document.getElementById("totalPoints");
 
-    msg.addEventListener("click", () => {
-      window.location.href = "https://arturio0101.github.io/alex/index.html";
-    });
+    // Текущие очки и общий счёт
+    savedPoints.textContent = STORAGE.points;
+    totalPoints.textContent = STORAGE.points;
+
+    replayModal.showModal();
     return;
   }
 
@@ -145,3 +142,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!STORAGE.played) infoModal.showModal();
   startGameBoard();
 });
+
