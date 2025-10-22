@@ -80,13 +80,14 @@ function drawFlashes() {
 }
 
 function spawnHeart() {
-  const x = Math.random() * (canvas.width - 20) + 10;
-  const angle = (Math.random() - 0.5) * 0.3; // угол траектории
+  const size = 15 + Math.random() * 5;
+  const x = Math.random() * (canvas.width - size * 2) + size;
+  const angle = (Math.random() - 0.5) * 0.3;
   hearts.push({
     x,
-    y: 0,
-    size: 15 + Math.random() * 5,
-    speed: 3 + Math.random() * 3, // быстрее падение
+    y: -size,
+    size,
+    speed: 4 + Math.random() * 4, // быстрее
     angle,
     drift: Math.random() * Math.PI * 2
   });
@@ -106,7 +107,9 @@ function update() {
   hearts.forEach((h, i) => {
     h.y += h.speed;
     h.drift += h.angle;
-    h.x += Math.sin(h.drift) * 1.5; // колебания по горизонтали
+    h.x += Math.sin(h.drift) * 1.5;
+    h.x = Math.max(h.size, Math.min(canvas.width - h.size, h.x)); // 🔹 не выходит за экран
+
     drawHeart(h.x, h.y, h.size, "#ff91f2");
 
     // Попадание
@@ -129,14 +132,11 @@ function update() {
     }
   });
 
-  // Ускорение появления по мере роста очков
+  // Ускорение появления
   if (score > 50) spawnRate = 0.05;
   if (score > 100) spawnRate = 0.06;
 
-  // Новые сердца
   if (Math.random() < spawnRate) spawnHeart();
-
-  // Вспышки
   drawFlashes();
 
   requestAnimationFrame(update);
@@ -183,3 +183,4 @@ claimBtn.addEventListener("click", () => {
   message.classList.add("hidden");
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
+
