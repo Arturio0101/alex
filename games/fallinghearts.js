@@ -166,7 +166,8 @@ function endGame() {
 
   // 🎯 Подсчёт очков
   let reward = 0;
-  if (score >= 150) reward = 30;
+  if (score >= 200) reward = 35;
+  else if (score >= 150) reward = 30;
   else if (score >= 100) reward = 25;
   else if (score >= 50) reward = 20;
   else if (score >= 25) reward = 15;
@@ -187,3 +188,4 @@ claimBtn.addEventListener("click", () => {
   message.classList.add("hidden");
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
+
