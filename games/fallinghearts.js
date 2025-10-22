@@ -162,10 +162,10 @@ canvas.addEventListener("touchmove", e => {
 function endGame() {
   gameRunning = false;
 
-  // 🎯 Подсчёт очков
+  // 🎯 Подсчёт очков (исправлено)
   let reward = 0;
-  else if (score >= 150) reward = 30;
-  if (score >= 100) reward = 25;
+  if (score >= 150) reward = 30;
+  else if (score >= 100) reward = 25;
   else if (score >= 50) reward = 20;
   else if (score >= 25) reward = 15;
   else reward = 5;
@@ -192,6 +192,3 @@ claimBtn.addEventListener("click", () => {
   message.classList.add("hidden");
   window.location.href = "https://arturio0101.github.io/alex/games/geschenk.html";
 });
-
-
-
