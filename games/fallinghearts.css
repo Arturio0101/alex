@@ -93,3 +93,28 @@ dialog {
   box-shadow: 0 0 30px rgba(255,91,214,.4);
   color: var(--ink);
 }
+
+#infoModal {
+  border: none;
+  border-radius: 18px;
+  background: rgba(21,26,46,.9);
+  backdrop-filter: blur(6px);
+  padding: 24px 20px;
+  width: min(90vw, 420px);
+  color: var(--ink);
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,91,214,.4);
+  animation: fadeIn .4s ease;
+}
+
+#infoModal::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -55%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+
