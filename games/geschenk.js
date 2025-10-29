@@ -93,9 +93,14 @@ function openGift(gift, card) {
   }, 600);
 }
 
-// === WhatsApp сертификат ===
+// === WhatsApp сертификат (передаём все данные прямо в URL) ===
 function sendWhatsApp(gift) {
-  const certUrl = `https://arturio0101.github.io/alex/certificate.html?gift=${encodeURIComponent(gift.name)}`;
+  const certUrl =
+    `https://arturio0101.github.io/alex/certificate.html?` +
+    `name=${encodeURIComponent(gift.name)}` +
+    `&desc=${encodeURIComponent(gift.desc)}` +
+    `&img=${encodeURIComponent(gift.img)}`;
+
   const text = encodeURIComponent(`💖 Ich habe ein Geschenk ausgewählt: ${gift.name}\n\n🎟️ Mein Zertifikat:\n${certUrl}`);
   const phone = "4915172386493";
   window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
@@ -116,6 +121,3 @@ function markGiftClaimed(gift, card) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
-
-
-
