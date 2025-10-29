@@ -5,15 +5,55 @@ const giftText = document.getElementById("giftText");
 const sendBtn = document.getElementById("sendBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
+// --- КОНСТАНТЫ ХРАНИЛИЩА ---
+const POINTS_KEY = "memory_points";
+const CLAIMED_KEY = "claimed_gifts";
+
+// --- ФУНКЦИИ РАБОТЫ СО STORAGE (надёжные) ---
+function readPoints() {
+  const raw = localStorage.getItem(POINTS_KEY);
+  const n = Number.parseInt(raw, 10);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+function writePoints(v) {
+  const safe = Math.max(0, Math.floor(Number(v) || 0));
+  localStorage.setItem(POINTS_KEY, String(safe));
+  return safe;
+}
+function readClaimed() {
+  try {
+    const arr = JSON.parse(localStorage.getItem(CLAIMED_KEY) || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch {
+    return [];
+  }
+}
+function writeClaimed(arr) {
+  localStorage.setItem(CLAIMED_KEY, JSON.stringify(Array.isArray(arr) ? arr : []));
+}
+
+// --- ОБЁРТКА ДЛЯ ЕДИНОГО ИСТОЧНИКА ИСТИНЫ ---
 const STORAGE = {
-  get points() { return +(localStorage.getItem("memory_points") || 0); },
-  set points(v) { localStorage.setItem("memory_points", v); },
-  get claimed() { return JSON.parse(localStorage.getItem("claimed_gifts") || "[]"); },
-  saveClaimed(arr) { localStorage.setItem("claimed_gifts", JSON.stringify(arr)); }
+  get points() { return readPoints(); },
+  set points(v) { writePoints(v); },
+  get claimed() { return readClaimed(); },
+  saveClaimed(arr) { writeClaimed(arr); }
 };
 
-// === Отобразить текущие очки ===
-pointsDisplay.textContent = STORAGE.points;
+// --- РЕНДЕР ТЕКУЩИХ ОЧКОВ (без перезаписи в localStorage) ---
+function renderPoints() {
+  pointsDisplay.textContent = STORAGE.points;
+}
+renderPoints(); // при первом заходе
+
+// --- СИНХРОНИЗАЦИЯ ПРИ ВОЗВРАТЕ СО СТРАНИЦЫ (bfcache) И МЕЖДУ ВКЛАДКАМИ ---
+window.addEventListener("pageshow", () => renderPoints());          // возврат «назад»
+document.addEventListener("visibilitychange", () => {               // переключение вкладок
+  if (document.visibilityState === "visible") renderPoints();
+});
+window.addEventListener("storage", (e) => {                         // внешние изменения
+  if (e.key === POINTS_KEY) renderPoints();
+});
 
 // === Список подарков ===
 const gifts = [
@@ -68,17 +108,17 @@ function openGift(gift, card) {
   card.classList.toggle("flip");
 
   setTimeout(() => {
-    if (STORAGE.points < gift.cost) {
-      giftText.innerHTML = `Du hast nur <strong>${STORAGE.points} LP</strong>.<br>Für <strong>${gift.name}</strong> brauchst du <strong>${gift.cost} LP</strong>.`;
+    const currentPoints = STORAGE.points; // читаем актуально с LS
+    if (currentPoints < gift.cost) {
+      giftText.innerHTML = `Du hast nur <strong>${currentPoints} LP</strong>.<br>Für <strong>${gift.name}</strong> brauchst du <strong>${gift.cost} LP</strong>.`;
       sendBtn.style.display = "none";
     } else {
       giftText.innerHTML = `Möchtest du <strong>${gift.name}</strong> auswählen?<br>(Kosten: ${gift.cost} LP)`;
       sendBtn.style.display = "inline-block";
       sendBtn.onclick = () => {
-        // 💖 Списываем очки
-        STORAGE.points = STORAGE.points - gift.cost;
-        localStorage.setItem("memory_points", STORAGE.points);
-        pointsDisplay.textContent = STORAGE.points;
+        // 💖 Списываем очки (только через writePoints, без ручных setItem)
+        const updated = writePoints(currentPoints - gift.cost);
+        pointsDisplay.textContent = updated;
 
         // Отправляем сертификат
         sendWhatsApp(gift);
