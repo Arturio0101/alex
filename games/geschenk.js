@@ -70,13 +70,13 @@ const gifts = [
   { 
   name: "Lord of the Rings – LED Wandlicht 💍", 
   desc: "Ein stilvolles LED-Wandlicht inspiriert vom Einen Ring – perfekt für Fans.", 
-  cost: 30, 
+  cost: 60, 
   img: "images/lort5.jpg" 
 },
 { 
   name: "Lord of the Rings – Premium Kissen ✨", 
   desc: "Ein weiches, hochwertiges Kissen mit LOTR-Design – ideal zum Entspannen.", 
-  cost: 25, 
+  cost: 35, 
   img: "images/lort6.jpg" 
 }
 
