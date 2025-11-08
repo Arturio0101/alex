@@ -66,7 +66,20 @@ const gifts = [
   { name: "Harry Potter – Golden Snitch Light ✨", desc: "Eine magische Schreibtischlampe in Form des Goldenen Schnatzes.", cost: 50, img: "images/hp1.jpg" },
   { name: "The Lord Of The Rings – Mordor Torch 🔥", desc: "Ein leuchtendes Sammlerstück für wahre Fans von Mittelerde.", cost: 35, img: "images/lort4.jpg" },
   { name: "Riesige Kuschel-Gans 🦢", desc: "Ein supersüßes, weiches Stofftier in Gänseform – perfekt zum Kuscheln.", cost: 40, img: "images/123.jpg" },
-  { name: "Gewichtete Capybara-Plüschfigur 🦫", desc: "Ein niedliches, beruhigendes Stofftier mit Gewicht – ideal zum Entspannen.", cost: 45, img: "images/124.jpg" }
+  { name: "Gewichtete Capybara-Plüschfigur 🦫", desc: "Ein niedliches, beruhigendes Stofftier mit Gewicht – ideal zum Entspannen.", cost: 45, img: "images/124.jpg" },
+  { 
+  name: "Lord of the Rings – LED Wandlicht 💍", 
+  desc: "Ein stilvolles LED-Wandlicht inspiriert vom Einen Ring – perfekt für Fans.", 
+  cost: 30, 
+  img: "images/lort5.jpg" 
+},
+{ 
+  name: "Lord of the Rings – Premium Kissen ✨", 
+  desc: "Ein weiches, hochwertiges Kissen mit LOTR-Design – ideal zum Entspannen.", 
+  cost: 25, 
+  img: "images/lort6.jpg" 
+}
+
 ];
 
 // === Показать подарки ===
@@ -161,4 +174,5 @@ function markGiftClaimed(gift, card) {
 }
 
 cancelBtn.addEventListener("click", () => confirmModal.close());
+
 
